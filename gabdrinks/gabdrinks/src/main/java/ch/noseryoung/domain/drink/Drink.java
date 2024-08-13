@@ -4,13 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "drink")
 @Getter
 @Setter
+@Table(name = "drink")
 public class Drink {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +30,5 @@ public class Drink {
     }
 
     public Drink() {}
+
 }

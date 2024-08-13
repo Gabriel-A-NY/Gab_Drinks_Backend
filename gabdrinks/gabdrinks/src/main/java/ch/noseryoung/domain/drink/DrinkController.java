@@ -1,6 +1,7 @@
 package ch.noseryoung.domain.drink;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,8 +39,14 @@ public class DrinkController {
         return ResponseEntity.status(200).body(drinkService.updateById(productId, drink));
     }
 
+    @DeleteMapping("{product_id}")
     public String deleteDrink(@PathVariable("product_id") int productId) throws InstanceNotFoundException {
         drinkService.deleteDrink(productId);
         return "deleted drink id: " + productId;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error" + e.getMessage());
     }
 }
