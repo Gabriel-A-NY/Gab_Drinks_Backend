@@ -1,4 +1,4 @@
-package ch.noseryoung.gabdrinks;
+package ch.noseryoung;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
