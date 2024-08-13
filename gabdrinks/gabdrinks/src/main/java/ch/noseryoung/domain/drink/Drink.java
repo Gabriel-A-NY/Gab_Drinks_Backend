@@ -11,7 +11,6 @@ import lombok.*;
 @Table(name = "drink")
 @Getter
 @Setter
-
 public class Drink {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +18,7 @@ public class Drink {
     private int id;
 
     @Column(name = "product_name")
-    private String pages;
+    private String product_name;
 
     @Column(name = "price")
     private float price;
@@ -27,10 +26,12 @@ public class Drink {
     @Column(name = "description")
     private String description;
 
-    public Drink(String description, float price, String pages, int id) {
-        this.description = description;
-        this.price = price;
-        this.pages = pages;
+    public Drink(int id, String product_name, float price, String description) {
         this.id = id;
+        this.product_name = product_name;
+        this.price = price;
+        this.description = description;
     }
+
+    public Drink() {}
 }
