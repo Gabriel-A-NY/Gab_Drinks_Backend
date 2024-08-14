@@ -1,0 +1,10 @@
+INSERT INTO drink (product_id, product_name, price, description) VALUES (1, 'coke', 1.99, 'beverage'),
+                                                                        (2, 'pepsi', 1.99, 'refreshment'),
+                                                                        (3, 'sprite', 1.99, 'beverage'),
+                                                                        (4, 'fanta', 1.99, 'beverage'),
+                                                                        (5, 'water', 1.99, 'beverage'),
+                                                                        (6, 'juice', 1.99, 'beverage'),
+                                                                        (7, 'milk', 1.99, 'beverage'),
+                                                                        (8, 'coffee', 1.99, 'beverage'),
+                                                                        (9, 'tea', 1.99, 'beverage'),
+                                                                        (10, 'hot chocolate', 1.99, 'beverage');

@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "drink")
 @Getter
 @Setter
-@Table(name = "drink")
 public class Drink {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +21,4 @@ public class Drink {
 
     @Column(name = "description")
     private String description;
-
-    public Drink(int id, String product_name, float price, String description) {
-        this.id = id;
-        this.product_name = product_name;
-        this.price = price;
-        this.description = description;
-    }
-
-    public Drink() {}
-
 }
