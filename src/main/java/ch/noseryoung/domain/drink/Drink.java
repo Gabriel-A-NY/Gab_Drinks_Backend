@@ -21,4 +21,7 @@ public class Drink {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "image_link")
+    private String image_link;
 }

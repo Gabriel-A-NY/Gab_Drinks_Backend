@@ -29,7 +29,7 @@ public class DrinkController {
         return ResponseEntity.ok().body(drinkService.getById(id));
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Drink> createDrink(@RequestBody Drink newDrink) throws InstanceAlreadyExistsException {
         return ResponseEntity.status(201).body(drinkService.addDrink(newDrink));
     }
