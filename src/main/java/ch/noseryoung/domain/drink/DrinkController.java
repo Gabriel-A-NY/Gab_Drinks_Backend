@@ -59,6 +59,6 @@ public class DrinkController {
     @CrossOrigin(origins = "http://localhost:5175")
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("err" + e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("err " + e.getMessage());
     }
 }
