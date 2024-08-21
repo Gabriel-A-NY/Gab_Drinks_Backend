@@ -19,31 +19,41 @@ public class DrinkController {
         this.drinkService = drinkService;
     }
 
+    @CrossOrigin(origins = "http://localhost:5175")
     @GetMapping("/all")
     public List<Drink> showAll() {
         return drinkService.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:5175")
     @GetMapping("/{product_id}")
     public ResponseEntity<Drink> getById(@PathVariable("product_id") int id) throws InstanceNotFoundException {
         return ResponseEntity.ok().body(drinkService.getById(id));
     }
+
+    @CrossOrigin(origins = "http://localhost:5175")
 
     @PostMapping("/add")
     public ResponseEntity<Drink> createDrink(@RequestBody Drink newDrink) throws InstanceAlreadyExistsException {
         return ResponseEntity.status(201).body(drinkService.addDrink(newDrink));
     }
 
+    @CrossOrigin(origins = "http://localhost:5175")
+
     @PutMapping(value = "/{product_id}")
     public ResponseEntity<Drink> updateDrink(@PathVariable("product_id") int productId, @RequestBody Drink drink) throws InstanceNotFoundException, InstanceAlreadyExistsException {
         return ResponseEntity.status(200).body(drinkService.updateById(productId, drink));
     }
+
+    @CrossOrigin(origins = "http://localhost:5175")
 
     @DeleteMapping("{product_id}")
     public String deleteDrink(@PathVariable("product_id") int productId) throws InstanceNotFoundException {
         drinkService.deleteDrink(productId);
         return "deleted drink id: " + productId;
     }
+
+    @CrossOrigin(origins = "http://localhost:5175")
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception e) {
