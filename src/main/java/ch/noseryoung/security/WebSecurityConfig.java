@@ -19,6 +19,7 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Configuration
 @EnableWebSecurity
@@ -39,17 +40,19 @@ public class WebSecurityConfig {
         return new ProviderManager(provider);
     }
 
+    @CrossOrigin(origins = "http://localhost:5175")
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/all").permitAll()
-                        .anyRequest().authenticated()
+        return http.authorizeHttpRequests(
+                        requests -> requests.requestMatchers(HttpMethod.GET).permitAll()
+                                .requestMatchers(HttpMethod.POST, "/login")
+                                .permitAll()
+                                .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .cors(AbstractHttpConfigurer::disable)
-                .csrf(AbstractHttpConfigurer::disable);
-
-        return http.build();
+                .csrf(AbstractHttpConfigurer::disable)
+                .httpBasic(Customizer.withDefaults())
+                .build();
     }
 }
