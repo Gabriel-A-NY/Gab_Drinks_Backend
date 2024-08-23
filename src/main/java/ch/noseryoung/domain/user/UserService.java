@@ -14,21 +14,21 @@ import java.util.List;
 @Service
 public class UserService implements UserDetailsService {
 
+    @Autowired
     private final UserRepository repository;
+
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
 
     public List<User> getAllUsers() {
         return repository.findAll();
     }
 
-    @Autowired
-    public UserService(UserRepository repository) {
-        this.repository = repository;
-    }
-
     @Override
-    public UserDetailsImpl loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByFirstName(username).map(UserDetailsImpl::new)
-                .orElseThrow(() -> new UsernameNotFoundException(username));
+    public UserDetailsImpl loadUserByUsername(String first_name) throws UsernameNotFoundException {
+        return repository.findByFirstName(first_name).map(UserDetailsImpl::new)
+                .orElseThrow(() -> new UsernameNotFoundException(first_name));
     }
 
     public record UserDetailsImpl(User user) implements UserDetails {
@@ -47,7 +47,7 @@ public class UserService implements UserDetailsService {
 
         @Override
         public String getUsername() {
-            return "";
+            return user.getFirstName();
         }
 
         @Override
